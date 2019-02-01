@@ -8,8 +8,18 @@ import static io.ipfs.multicodec.VarInt.decodeVarInt;
 import static io.ipfs.multicodec.VarInt.encodeVarInt;
 import static org.junit.Assert.*;
 
+
+/**
+ * For testing {@link VarInt}
+ *
+ * @author Aliabbas Merchant
+ * @version 1.0
+ */
 public class VarIntTest {
 
+    /**
+     * For testing the correctness of {@link VarInt#encodeVarInt(int)}
+     */
     @Test
     public void encodeVarIntTest() {
         int[] test_cases = {1, 127, 128, 255, 300, 16384};
@@ -29,6 +39,9 @@ public class VarIntTest {
         }
     }
 
+    /**
+     * For testing the correctness of {@link VarInt#decodeVarInt(ByteBuffer)}
+     */
     @Test
     public void decodeVarIntTest() {
         int[] test_cases = {1, 127, 128, 255, 300, 16384};
@@ -41,12 +54,18 @@ public class VarIntTest {
         }
     }
 
+    /**
+     * Helper method for returning the bits of a ByteBuffer
+     *
+     * @param byteBuffer The input ByteBuffer
+     * @return The bits of the ByteBuffer, represented as a string of 1s and 0s
+     */
     private static String getBitsOfByteBuffer(ByteBuffer byteBuffer) {
-        String ans = null;
+        String ans = "";
         int i = 0;
         while (true) {
             try {
-                if (ans != null) {
+                if (!ans.equals("")) {
                     ans = ans.concat(getBitsOfByte(byteBuffer.get(i)));
                 } else {
                     ans = getBitsOfByte(byteBuffer.get(i));
@@ -60,8 +79,15 @@ public class VarIntTest {
         return ans.trim();
     }
 
+    /**
+     * Helper method for returning the bits of a byte
+     *
+     * @param b The input byte
+     * @return The bits of the byte, represented as a string of 1s and 0s
+     */
     private static String getBitsOfByte(byte b) {
         return String.format("%8s", Integer.toBinaryString(b & 0xFF)).replace(' ', '0');
     }
+
 
 }

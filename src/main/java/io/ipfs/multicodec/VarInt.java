@@ -27,8 +27,22 @@ import java.nio.ByteBuffer;
 // Well, I just got inspired by a particular gist, and they had mentioned to include the copyright notice, so I did.
 // The code was not copied from there, but taken from the fmoo/python-varint repo and edited.
 
+
+/**
+ * Java Implementation of multiformats/unsigned-varint (https://github.com/multiformats/unsigned-varint)
+ * @author Aliabbas Merchant
+ * @version 1.0
+ * @since 2019-02-01
+ */
 public class VarInt {
-    public static ByteBuffer encodeVarInt(int input) throws Exception {
+
+    /**
+     * Encodes an integer to unsigned VarInt format
+     * @param input The integer to be encoded in unsigned VarInt format
+     * @return A ByteBuffer, containing the input encoded in unsigned VarInt format
+     * @throws IllegalArgumentException If the integer is negative
+     */
+    public static ByteBuffer encodeVarInt(int input) throws IllegalArgumentException {
         if (input >= 0) {
             ByteBuffer buf = ByteBuffer.allocate(5);
             while (true) {
@@ -44,10 +58,16 @@ public class VarInt {
             buf.flip();
             return buf;
         } else {
-            throw new Exception("The input cannot be a negative integer");
+            throw new IllegalArgumentException("The input cannot be a negative integer");
         }
     }
 
+
+    /**
+     * Decodes bytes from unsigned VarInt format to an integer
+     * @param varint The ByteBuffer containing the encoded bytes
+     * @return The decoded integer
+     */
     public static int decodeVarInt(ByteBuffer varint) {
         int shift = 0;
         int result = 0;
