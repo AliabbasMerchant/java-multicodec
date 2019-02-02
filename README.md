@@ -1,6 +1,9 @@
 # java-multicodec
 
-> A Java implementation of [multicodec](https://github.com/multiformats/multicodec).
+[![](https://img.shields.io/badge/project-multiformats-blue.svg?style=flat-square)](https://github.com/multiformats/multiformats)
+
+> A Java implementation of [multicodec](https://github.com/multiformats/multicodec).  
+> Supported codecs: See [table](table.csv)
 
 ## Install
 
@@ -8,18 +11,69 @@ Simply clone this repository.
 
 ## Usage
 
+```
+boolean b = Multicodec.isCodec(someCodecName);
+
+ByteBuffer prefix = Mutlicodec.getPrefix(someCodecName);
+
+ByteBuffer data;
+// put some data in the byteBuffer
+ByteBuffer prefixedData = Multicodec.addPrefix(someCodecName, data);
+ByteBuffer prefix = Multicodec.extractPrefix(prefixedData);
+ByteBuffer originalData = Multicodec.removePrefix(prefixedData);
+String codec = Multicodec.getCodec(prefixedData);
+```
+
 ## Dependency
+You can use this project by building the JAR file as specified below, or by using [JitPack](https://jitpack.io/#multiformats/java-multihash/) (also supporting Gradle, SBT, etc).
+
+for Maven, you can add the following sections to your POM.XML:
+```
+<repositories>
+  <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+  </repository>
+</repositories>
+
+<dependencies>
+  <dependency>
+    <groupId>com.github.AliabbasMerchant</groupId>
+    <artifactId>java-multicodec</artifactId>
+    <version>$LATEST_VERSION</version>
+  </dependency>
+</dependencies>
+```
 
 ## Testing
 
+### Ant
+`ant test`
+
+### Maven
+`mvn test`
+
 ## Building
 
+### Ant
+`ant dist` will build a JAR file in the `./dist` suitable for manual inclusion in a project. Dependent libraries are included in `./dist/lib`.
+
+### Maven
+`mvn package` will build a JAR file with Maven dependency information.
+
 ## Releasing
+The version number is specified in `build.xml` and `pom.xml` and must be changed in both places in order to be accurately reflected in the JAR file manifest. A git tag must be added in the format "vx.x.x" for JitPack to work.
 
 ## Maintainers
+[Aliabbas Merchant](https://github.com/AliabbasMerchant).
 
 ## Contribute
+Contributions welcome. Please check out [the issues](https://github.com/AliabbasMerchant/java-multicodec/issues).
 
+Check out our [contributing document](https://github.com/multiformats/multiformats/blob/master/contributing.md) for more information on how we work, and about contributing in general. Please be aware that all interactions related to multiformats are subject to the IPFS [Code of Conduct](https://github.com/ipfs/community/blob/master/code-of-conduct.md).
+
+Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## License
-[MIT](LICENSE)
+
+[MIT](LICENSE) © 2019 Aliabbas Merchant

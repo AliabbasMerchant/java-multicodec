@@ -11,14 +11,13 @@ import static org.junit.Assert.*;
 
 /**
  * For testing {@link VarInt}
- *
  * @author Aliabbas Merchant
  * @version 1.0
  */
 public class VarIntTest {
 
     /**
-     * For testing the correctness of {@link VarInt#encodeVarInt(int)}
+     For testing the correctness of {@link VarInt#encodeVarInt(int)}
      */
     @Test
     public void encodeVarIntTest() {
@@ -40,7 +39,7 @@ public class VarIntTest {
     }
 
     /**
-     * For testing the correctness of {@link VarInt#decodeVarInt(ByteBuffer)}
+     For testing the correctness of {@link VarInt#decodeVarInt(ByteBuffer)}
      */
     @Test
     public void decodeVarIntTest() {
@@ -56,7 +55,6 @@ public class VarIntTest {
 
     /**
      * Helper method for returning the bits of a ByteBuffer
-     *
      * @param byteBuffer The input ByteBuffer
      * @return The bits of the ByteBuffer, represented as a string of 1s and 0s
      */
@@ -81,7 +79,6 @@ public class VarIntTest {
 
     /**
      * Helper method for returning the bits of a byte
-     *
      * @param b The input byte
      * @return The bits of the byte, represented as a string of 1s and 0s
      */

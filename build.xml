@@ -1,6 +1,6 @@
 <project name="java-multicodec" default="dist" basedir=".">
   <description>
-    Java Multicodec
+    Java Implementation of multiformats/multicodec
   </description>
 
   <property name="src" location="src"/>
@@ -9,7 +9,7 @@
 
   <path id="dep.runtime">
     <fileset dir="./lib">
-        <include name="**/*.jar" />
+      <include name="**/*.jar" />
     </fileset>
   </path>
 
@@ -40,7 +40,7 @@
         <attribute name="Class-Path" value="${manifest_cp}"/>
         <attribute name="Implementation-Vendor" value="io.ipfs"/>
         <attribute name="Implementation-Title" value="multicodec"/>
-        <attribute name="Implementation-Version" value="1.2.0"/>
+        <attribute name="Implementation-Version" value="1.0"/>
       </manifest>
     </jar>
   </target>
@@ -53,9 +53,13 @@
         <pathelement location="lib/hamcrest-core-1.3.jar" />
         <pathelement location="dist/multicodec.jar" />
       </classpath>
+      <test name="io.ipfs.multicodec.VarIntTest" haltonfailure="yes">
+        <formatter type="plain"/>
+        <formatter type="xml"/>
+      </test>
       <test name="io.ipfs.multicodec.MulticodecTest" haltonfailure="yes">
-	<formatter type="plain"/>
-	<formatter type="xml"/>
+        <formatter type="plain"/>
+        <formatter type="xml"/>
       </test>
     </junit>
   </target>
